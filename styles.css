@@ -41,3 +41,19 @@
     background-color: black;
     border-radius: 10px;
 }
+
+.screen {
+    background-color: #eee;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    color: black;
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.screen-current {
+    min-height: 70px;
+    font-size: 40px;
+}
