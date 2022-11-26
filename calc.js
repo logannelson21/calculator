@@ -22,3 +22,19 @@ console.log(multiply);
 
 /* Operator Function */
 
+function operate(operater , a , b) {
+    a = Number(a);
+    b = Number(b);
+    if(operater === '+') {
+        return add(a , b);
+    } 
+    else if(operater === '-') {
+        return subtract(a , b);
+    } 
+    else if(operater === '*') {
+        return multiply(a , b);
+    }
+    else if(operater === '/') {
+        return divide(a , b);
+    }
+}
