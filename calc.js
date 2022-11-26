@@ -25,16 +25,18 @@ console.log(multiply);
 function operate(operater , a , b) {
     a = Number(a);
     b = Number(b);
-    if(operater === '+') {
-        return add(a , b);
-    } 
-    else if(operater === '-') {
-        return subtract(a , b);
-    } 
-    else if(operater === '*') {
-        return multiply(a , b);
+    switch (operater) {
+        case '+':
+            return add(a , b);
+        case '-':
+            return subtract(a , b);
+        case '*':
+            return multiply(a , b);
+        case '/':
+            if(b === 0) return null;
+            else return divide(a , b)
+        default:
+            return null;                     
     }
-    else if(operater === '/') {
-        return divide(a , b);
-    }
+
 }
