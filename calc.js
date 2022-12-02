@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded' , function() {
 
     let inputScreen = document.querySelector('.input');
     let currentScreen = document.querySelector('.current');
+    let equal = document.querySelector('#equals');
 
     numbers.forEach((number) => number.addEventListener('click' , function(e){
         handleNumber(e.target.textContent)
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded' , function() {
 
     operators.forEach((op) => op.addEventListener('click' , function(e){
         handleOperator(e.target.textContent)
-        inputScreen.textContent = inputValue + '' + operator;
+        inputScreen.textContent = inputValue + ' ' + operator;
 
     }))
 
@@ -75,6 +76,22 @@ document.addEventListener('DOMContentLoaded' , function() {
         operator = '';
         inputScreen.textContent = currentValue;
         currentScreen.textContent = currentValue;
+    })
+
+    equal.addEventListener('click' , function(){
+       if(currentValue != '' && inputValue != ''){
+        calculate()
+        inputScreen.textContent = '';
+        if(inputValue.length <= 5) {
+        currentScreen.textContent = inputValue;
+        } else {
+            currentScreen.textContent = inputValue(0,5) + '...';
+        }
+       }
+    })
+
+    decimal.addEventListener('click' , function(){
+        addDecimal();
     })
 })
 
@@ -89,4 +106,33 @@ function handleOperator(op) {
     operator = op;
     inputValue = currentValue;
     currentValue = '';
+}
+
+function calculate() {
+    inputValue = Number(inputValue);
+    currentValue = Number(currentValue);
+
+    if(operator === '+') {
+        inputValue += currentValue;
+    } else if(operator === '-') {
+        inputValue -= currentValue;
+    } else if(operator === 'x') {
+        inputValue *= currentValue;
+    } else {
+        inputValue /= currentValue;
+    }
+
+    inputValue = roundNumber(inputValue);
+    inputValue = inputValue.toString();
+    currentValue = inputValue.toString();
+}
+
+function roundNumber(num) {
+    return Math.round(num * 1000) / 1000;
+}
+
+function addDecimal() {
+    if(!currentValue.includes('.')){
+        currentValue += '.';
+    }
 }
